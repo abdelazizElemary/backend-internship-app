@@ -1,9 +1,9 @@
-from django.urls import include, path
-from .api_views import BookListApi , BookDetail
+from django.urls import path
+from .views import BookList , BookDetail
 
 urlpatterns = [
     # for list books and creat new books
-    path('books/',BookListApi.as_view() , name='Book_list_api'),
+    path('books/',BookList.as_view() , name='Book_list_api'),
     # for retrieve, update or delete a book
     path('book/<int:id>/',BookDetail.as_view() , name='Book_detail_api'),
 ]
