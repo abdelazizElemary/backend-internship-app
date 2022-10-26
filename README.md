@@ -12,6 +12,10 @@ There are two columns named: date_created and date_updated to trace any change i
 4. API for retreving all books -> `http://127.0.0.1:8000/api/all/`
 5. API for search by category -> `http://127.0.0.1:8000/api/all/?category=category_name`
 
+## Request format
+
+`{ "name": "A TIME TO KILL", "publishDate": "15-11-1862", "author": "JOHN GRISHAM", "category": "History" }`
+
 ## Dependencies
 
 - sqlite3 for the database
