@@ -60,7 +60,7 @@ def view_books(request):
 
 
 # update a book
-@api_view(['POST'])
+@api_view(['PUT'])
 def update_book(request, pk):
     item = Book.objects.get(pk=pk)
     data = BookSerializer(instance=item, data=request.data)
@@ -72,6 +72,7 @@ def update_book(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 
+# delete a book
 @api_view(['DELETE'])
 def delete_book(request, pk):
     item = Book.objects.get(pk=pk)
