@@ -12,7 +12,7 @@
 
 - to Create new `Author` ---> `http://localhost:8000/api/Authors/` request's body will just need `author_name`
 
-- to Create new `Blog` ---> `http://localhost:8000/api/blogs/` request's body will need `blog_title`, `blog_text` and an exist `blog_author` as a foreign pk from `Author` model
+- to Create new `Blog` ---> `http://localhost:8000/api/blogs/` request's body will need `blog_title`, `blog_text` and an exist `blog_author` as a foreign pk(id) from `Author` model
 
 - to delete\update use the same scheme with changing the rquest to a `PUT` \ `DELETE` request and the parts you want to change with adding the id of the `blog` \ `author` you want to change at the end ---> `http://localhost:8000/api/Authors/{:id}/`
 
