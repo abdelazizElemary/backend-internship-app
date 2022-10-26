@@ -14,7 +14,7 @@ There are two columns named: date_created and date_updated to trace any change i
 
 ## Request format
 
-`{ "name": "book5665", "publishDate": "15-11-2000", "author": "Ahmed", "category": "fun" }`
+`{ "name": "A TIME TO KILL", "publishDate": "15-11-1862", "author": "JOHN GRISHAM", "category": "History" }`
 
 ## Dependencies
 
