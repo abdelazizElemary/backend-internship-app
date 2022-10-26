@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "backend-internship-app"
+version = "0.1.0"
+description = ""
+authors = ["islamsaeed9854 <83390999+EslamSaeed9854@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "backend_internship_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.2"
+djangorestframework = "^3.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
