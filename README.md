@@ -26,6 +26,6 @@
 - App paths 
     - "Books/" show all book list
     - "Books/create" create new book
-    - "Books/<id>" show the details for the book with given id
-    - "Books/delete/<id>" Delete the book with given id
-    - "Books/update/<id>" Update the book with given id
+    - "Books/id" show the details for the book with given id
+    - "Books/delete/id" Delete the book with given id
+    - "Books/update/id" Update the book with given id
