@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "crud-app"
+version = "0.1.0"
+description = ""
+authors = ["Hossam Ali <hossamali130@gmail.com>"]
+readme = "README.md"
+packages = [{include = "crud_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "^4.1.2"
+djangorestframework = "^3.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
