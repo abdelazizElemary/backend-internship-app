@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'suiii.urls'
+ROOT_URLCONF = 'library.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'suiii.wsgi.application'
+WSGI_APPLICATION = 'library.wsgi.application'
 
 
 # Database
