@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "suiii"
+version = "0.1.0"
+description = ""
+authors = ["AbdoGad <bedo2171311@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+djangorestframework = "^3.14.0"
+markdown = "^3.4.1"
+django-filter = "^22.1"
+django = "^4.1.2"
+django-extensions = "^3.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
