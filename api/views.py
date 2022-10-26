@@ -7,6 +7,8 @@ from .serializers import BookSerializer
 from rest_framework import serializers
 from rest_framework import status
 
+# all routes
+
 
 @api_view(['GET'])
 def ApiOverview(request):
@@ -21,6 +23,7 @@ def ApiOverview(request):
     return Response(api_urls)
 
 
+# add book
 @api_view(['POST'])
 def add_book(request):
     item = BookSerializer(data=request.data)
@@ -36,11 +39,11 @@ def add_book(request):
         return Response(status=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
 
+# get a specific book (by category) or get all books
 @api_view(['GET'])
 def view_books(request):
 
     # checking for the parameters from the URL
-    # get a specific book (by category) or get all books
     if request.query_params:
         category = request.query_params.get("category", None)
         if category:
@@ -52,5 +55,28 @@ def view_books(request):
     if items:
         serializer = BookSerializer(items, many=True)
         return Response(serializer.data)
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+# update a book
+@api_view(['POST'])
+def update_book(request, pk):
+    item = Book.objects.get(pk=pk)
+    data = BookSerializer(instance=item, data=request.data)
+
+    if data.is_valid():
+        data.save()
+        return Response(data.data)
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['DELETE'])
+def delete_book(request, pk):
+    item = Book.objects.get(pk=pk)
+    if item:
+        item.delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
     else:
         return Response(status=status.HTTP_404_NOT_FOUND)
