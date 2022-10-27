@@ -2,13 +2,14 @@ from rest_framework.serializers import ModelSerializer
 from book.models import Book, Category
 
 
-def BookSerializer(ModelSerializer):
+class CategorySerializer(ModelSerializer):
     class Meta:
-        model = Book
+        model = Category
         fields = "__all__"
 
 
-def CategorySerializer(ModelSerializer):
+class BookSerializer(ModelSerializer):
+    categories = CategorySerializer(many=True)
     class Meta:
-        model = Category
+        model = Book
         fields = "__all__"
