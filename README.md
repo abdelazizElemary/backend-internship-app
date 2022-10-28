@@ -10,7 +10,7 @@
 
 ## You can create, read, update or delete from the db using the following apis
 
-- to Create new `Author` ---> `http://localhost:8000/api/Authors/` request's body will just need `author_name`
+- to Create new `Author` ---> `http://localhost:8000/api/Authors/` request's body will just need `username` and `password`
 
 - to Create new `Blog` ---> `http://localhost:8000/api/blogs/` request's body will need `blog_title`, `blog_text` and an exist `blog_author` as a foreign pk(id) from `Author` model
 
@@ -22,4 +22,3 @@
   ## Hints
 
   - I have used `auto_now_add` instead of `TimeStampedModels`
-  - I haven't used the same `User` using `AbstractUser` as we don't need any type of authentication

@@ -1,10 +1,13 @@
+from enum import unique
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+
 # Create your models here.
-class Author(models.Model):
-    author_name = models.CharField(max_length=300)
+class Author(AbstractUser):
 
     def __str__(self):
-        return self.author_name
+        return self.username
 
 
 class Blog(models.Model):
