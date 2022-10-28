@@ -9,7 +9,8 @@ class CategorySerializer(ModelSerializer):
 
 
 class BookSerializer(ModelSerializer):
-    categories = CategorySerializer(many=True)
+    categories = CategorySerializer(many=True, read_only=True)
     class Meta:
         model = Book
         fields = "__all__"
+
