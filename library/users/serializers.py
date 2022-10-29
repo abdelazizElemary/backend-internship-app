@@ -38,10 +38,15 @@ class CreateUserSerializer(serializers.ModelSerializer):
         return user
 
 
-class LoginSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MyUser
-        fields = ('username', 'email',)
+class LoginSerializer(serializers.Serializer):
+    def create(self, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass
+
+    username = serializers.CharField()
+    password = serializers.CharField()
 
     def validate(self, request):
         user = authenticate(**request)
