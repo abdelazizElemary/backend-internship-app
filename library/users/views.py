@@ -43,9 +43,8 @@ class UserProfile(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = UserSerializer
 
+    def get_object(self):
+        return self.request.user
+
 
 user_profile_view = UserProfile.as_view()
-
-
-def get_object(self):
-    return self.request.user
