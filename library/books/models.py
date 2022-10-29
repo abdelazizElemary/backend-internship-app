@@ -4,12 +4,9 @@ from django.db import models
 from django.db import models
 
 from core.models import TimeStampedModel
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 
-
-class MyUser(AbstractUser):
-    def __str__(self):
-        return self.email
+from users.models import MyUser
 
 
 # Create your models here.

@@ -1,11 +1,9 @@
 from django.contrib import admin
 
-from books.models import MyUser, Book
+from books.models import Book
 
 
 # Register your models here.
-class MyUserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email')
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -14,5 +12,4 @@ class BookAdmin(admin.ModelAdmin):
 
 
 
-admin.site.register(MyUser, MyUserAdmin)
 admin.site.register(Book, BookAdmin)
