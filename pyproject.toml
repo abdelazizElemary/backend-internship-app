@@ -10,6 +10,11 @@ packages = [{include = "backend_internship_app"}]
 python = "^3.10"
 django = "^4.1.2"
 djangorestframework = "^3.14.0"
+knox = "^0.1.14"
+cryptography = "^38.0.3"
+jinja2 = "^3.1.2"
+boto3 = "^1.26.1"
+django-rest-knox = "^4.2.0"
 
 
 [build-system]

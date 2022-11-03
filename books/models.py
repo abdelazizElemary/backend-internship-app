@@ -8,3 +8,6 @@ class Book(models.Model):
     name = models.CharField(max_length=150)
     publish_data = models.DateTimeField(auto_now_add=True )
     category = models.CharField(max_length=150)
+    
+    def __str__(self):
+        return self.name

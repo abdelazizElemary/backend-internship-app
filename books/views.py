@@ -1,3 +1,4 @@
+import imp
 from django.shortcuts import render
 from .models import Book
 from rest_framework.response import Response
@@ -6,13 +7,17 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.views import APIView
 from django.http import Http404
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 
 # http://127.0.0.1:8000/books/rest/cbv/   => Postman
+# http://127.0.0.1:8000/books/api-token-auth/ => Get_Token
 
 
 class CBV_List(APIView):
+    permission_classes = (IsAuthenticated,)
     def get(self, request):
         books = Book.objects.all()
         serializer = BookSerializer(books, many = True)
@@ -31,6 +36,7 @@ class CBV_List(APIView):
         )
 
 class  CBV_pk(APIView):
+    permission_classes = (IsAuthenticated,)
     def get_object(self, pk):
         try:
             return Book.objects.get(pk=pk)
