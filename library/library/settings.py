@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'rest_framework',
+    'rest_framework_simplejwt',
+    'knox',
+    'authentication',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,6 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication', ),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
