@@ -22,7 +22,7 @@ class Register(generics.GenericAPIView):
 
 class Login(KnoxLoginView):
     serializer_class = LoginSerializer
-    permission_classes = ()
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
         serializer = AuthTokenSerializer(data=request.data)
