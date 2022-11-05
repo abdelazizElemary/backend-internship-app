@@ -8,6 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'email')
 
+
 class RegisterSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(
         label='Password', required=True)
@@ -17,16 +18,19 @@ class RegisterSerializer(serializers.ModelSerializer):
     def validate_password1(self, password1):
         validate_password(password1)
         return password1
+
     def validate(self, data):
         if data.get('password1') != data.get('password2'):
-            print(data)
             raise serializers.ValidationError(
                 {'password2': ["Passwords don't match"]})
         return data
 
     def create(self, validated_data):
         return User.objects.create_user(
-            username=validated_data['username'], password=validated_data['password1'], email=validated_data['email'])
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password1'], 
+        )
 
     class Meta:
         model = User
@@ -36,9 +40,3 @@ class RegisterSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(label='Username', required=True)
     password = serializers.CharField(label='Password', required=True)
-
-    def validate(self, data):
-        self.user = authenticate(**data)
-        if self.user and self.user.is_active:
-            return self.user
-        raise serializers.ValidationError('Incorrect Credentials Passed.')

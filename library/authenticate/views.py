@@ -1,50 +1,32 @@
-from django.http import JsonResponse
-from rest_framework import permissions
+from rest_framework import generics, permissions
 from .serializers import LoginSerializer, RegisterSerializer, UserSerializer
-from rest_framework.parsers import JSONParser
-from rest_framework.views import APIView
 from knox.auth import TokenAuthentication
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from knox.views import LoginView as KnoxLoginView
+from django.contrib.auth import login
+from rest_framework.response import Response
 from knox.models import AuthToken
-from knox.views import LogoutView
 
 
-class Register(APIView):
+class Register(generics.GenericAPIView):
     serializer_class = RegisterSerializer
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (permissions.AllowAny,)
 
-    def post(self, request):
-        self.data = JSONParser().parse(request)
-        self.serializer = RegisterSerializer(data=self.data)
-        if self.serializer.is_valid():
-            self.user = self.serializer.save()
-            self.token = AuthToken.objects.create(self.user)
-            return JsonResponse({
-                "token": self.token[1],
-                "user": UserSerializer(self.user).data
-            }, status=201)
-        return JsonResponse(self.serializer.errors, status=400)
-
-
-class Login(APIView):
-    serializer_class = LoginSerializer
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (permissions.AllowAny,)
-
-    def post(self, request):
-        self.data = JSONParser().parse(request)
-        serializer = LoginSerializer(data=self.data)
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data
-        return JsonResponse({
-            "token": AuthToken.objects.create(user)[1],
-            "user": UserSerializer(user).data
-        }, status=200)
+        user = serializer.save()
+        return Response({
+        "user": UserSerializer(user, context=self.get_serializer_context()).data,
+        "token": AuthToken.objects.create(user)[1]
+        })
 
+class Login(KnoxLoginView):
+    serializer_class = LoginSerializer
+    permission_classes = ()
 
-class Logout(LogoutView):
-    def post(self, *args, **kwargs):
-        super().post(*args, **kwargs)
-        return JsonResponse({
-            "detail": "logged out successfully"
-        }, status=200)
+    def post(self, request, format=None):
+        serializer = AuthTokenSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        login(request, user)
+        return super(Login, self).post(request, format=None)
