@@ -1,5 +1,10 @@
+from _ast import Try
 from abc import ABC
 
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse
+from django.utils.http import urlsafe_base64_encode
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -14,16 +19,15 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
-    confirm_password = serializers.CharField()
+    confirm_password = serializers.CharField(required=True)
 
     def validate(self, request):
-        print(request['username'])
         password1 = request['password']
         password2 = request['confirm_password']
         if password1 and password2 == password1:
             return request
 
-        raise serializers.ValidationError("password and confirm password are different")
+        raise serializers.ValidationError("Please sure that password and confirm password are identical .")
 
     class Meta:
         model = MyUser
@@ -45,11 +49,35 @@ class LoginSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         pass
 
-    username = serializers.CharField()
-    password = serializers.CharField()
+    username = serializers.CharField(required=True)
+    password = serializers.CharField(required=True)
 
     def validate(self, request):
         user = authenticate(**request)
         if user and user.is_active:
             return user
-        raise serializers.ValidationError("Invalid Username or Password .")
+        raise serializers.ValidationError("Please enter the correct username and password for a staff account. Note "
+                                          "that both fields may be case-sensitive..")
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+    confirm_new_password = serializers.CharField(required=True)
+
+    def validate(self, request):
+        password1 = request['new_password']
+        password2 = request['confirm_new_password']
+        if password1 and password2 == password1:
+            return request
+
+        raise serializers.ValidationError("Please sure that new password and  confirm password are identical . ")
+
+
+
