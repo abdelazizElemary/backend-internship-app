@@ -34,11 +34,14 @@ if there is any problem
     - Authenticated `UserProfile` view
 
 
-- `Next/Current  tasks 2`
+- `completed  tasks 3`
     - Create APIView Change Password
-    - Create APIView Reset Password
-    - Create APIView confirmation Email
-    - Authenticated Books Crud
+    - Authenticated `custom` Books Crud
     - create Book and being assigned to current Authenticated User
     - delete or Update Book if it's belong to current Authenticated User
-    - reading about `JWT` in Django , trying to Build `JWT` 
+  
+
+- `Next/Current  tasks 4`
+  - Create APIView Reset Password
+  - Create APIView confirmation Email
+  - reading about `JWT` in Django , trying to Build `JWT` 
