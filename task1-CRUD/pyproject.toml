@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "crud-app"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "crud_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.2"
+djangorestframework = "3.12.0"
+pip = "^22.3"
+markdown = "^3.4.1"
+django-filter = "^22.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
