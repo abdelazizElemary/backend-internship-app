@@ -20,10 +20,17 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         return user
 
-# Change Password
-from rest_framework import serializers
-from django.contrib.auth.models import User
+# Login Serializer
+class LogInSerializer(serializers.Serializer):
+    model = User
 
+    """
+    Serializer for login change endpoint.
+    """
+    user_name = serializers.CharField(required=True)
+    password = serializers.CharField(required=True)
+
+# Change Password
 class ChangePasswordSerializer(serializers.Serializer):
     model = User
 
