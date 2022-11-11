@@ -12,6 +12,11 @@ markdown = "^3.4.1"
 django-filter = "^22.1"
 django = "^4.1.2"
 django-extensions = "^3.2.1"
+django-rest-knox = "^4.2.0"
+knox = "^0.1.14"
+jinja2 = "^3.1.2"
+boto3 = "^1.26.3"
+djangorestframework-simplejwt = "^5.2.2"
 
 
 [build-system]

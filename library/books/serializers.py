@@ -1,8 +1,7 @@
 #import model
-from .models import Book, User
+from .models import Book,User
 #import serializer
 from rest_framework import serializers
-
 # Create your serializers here.
 class BookSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -12,4 +11,5 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups')
+        fields = ('id', 'username', 'email', 'groups')
+

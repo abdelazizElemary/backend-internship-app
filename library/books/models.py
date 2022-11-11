@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from django_extensions.db.models import TimeStampedModel
 # Create your models here.
 class User(AbstractUser):
+    
     pass
 
 class Book(TimeStampedModel):
