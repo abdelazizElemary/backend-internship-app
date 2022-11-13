@@ -15,9 +15,9 @@ class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     permission_classes = [BookPermission]
 
-    def perform_destroy(self, instance):
-        current_user = self.request.user
-
-        if instance.author.id != current_user.id:
-            raise ValidationError("Unauthorized user")
-        instance.delete()
+    # def perform_destroy(self, instance):
+    #     current_user = self.request.user
+    #
+    #     if instance.author.id != current_user.id:
+    #         raise ValidationError("Unauthorized user")
+    #     instance.delete()

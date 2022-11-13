@@ -9,7 +9,6 @@ class BookSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('id', 'author')
 
-
     def create(self, validated_data):
         author = None
         request = self.context.get("request")
@@ -39,10 +38,9 @@ class BookSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-    @staticmethod
-    def validate_access2(book_author, request_user):
-        print(book_author.id, request_user.id)
-        if not request_user or request_user.id != book_author.id:
-            raise serializers.ValidationError({'message': "you haven't access to this book "})
-
-
+    # def __delete__(self, instance):
+    #     request_user = None
+    #     request = self.context.get("request")
+    #     if request and hasattr(request, "user"):
+    #         request_user = request.user
+    #     self.validate_access(instance.author, request_user)
