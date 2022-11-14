@@ -1,5 +1,4 @@
-from django.urls import path, include
-from rest_framework.authtoken import views as auth_view
+from django.urls import path
 from knox import views as knox_views
 
 from .views import login_view, user_profile_view, Signup_view, user_change_password_view

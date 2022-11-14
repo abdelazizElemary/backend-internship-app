@@ -1,12 +1,5 @@
-from _ast import Try
-from abc import ABC
 
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.contrib.sites.shortcuts import get_current_site
-from django.urls import reverse
-from django.utils.http import urlsafe_base64_encode
 from rest_framework import serializers
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
 from .models import MyUser
@@ -35,10 +28,10 @@ class CreateUserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        extra = {'first_name': validated_data['first_name'], 'last_name': validated_data['last_name']}
+        extra_data = {'first_name': validated_data['first_name'], 'last_name': validated_data['last_name']}
 
         user = MyUser.objects.create_user(validated_data['username'], validated_data['email'],
-                                          validated_data['password'], **extra)
+                                          validated_data['password'], **extra_data)
         return user
 
 

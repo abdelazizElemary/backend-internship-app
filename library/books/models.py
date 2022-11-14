@@ -1,10 +1,7 @@
-from django.db import models
 
-# Create your models here.
 from django.db import models
 
 from core.models import TimeStampedModel
-from django.contrib.auth.models import AbstractUser, User
 
 from users.models import MyUser
 

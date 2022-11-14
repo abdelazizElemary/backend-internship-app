@@ -37,10 +37,3 @@ class BookSerializer(serializers.ModelSerializer):
         instance.quantity = validated_data.get('quantity', instance.quantity)
         instance.save()
         return instance
-
-    # def __delete__(self, instance):
-    #     request_user = None
-    #     request = self.context.get("request")
-    #     if request and hasattr(request, "user"):
-    #         request_user = request.user
-    #     self.validate_access(instance.author, request_user)
