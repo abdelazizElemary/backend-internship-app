@@ -11,7 +11,7 @@ class Author(AbstractUser):
 
 
 class Blog(models.Model):
-    blog_author = models.ForeignKey(Author,  on_delete = models.CASCADE)
+    blog_author = models.ForeignKey(Author,  on_delete = models.CASCADE, null=True, blank=True)
     blog_title = models.CharField(max_length=200)
     blog_text = models.TextField(max_length=2000)
     pub_date = models.DateTimeField(auto_now_add=True)
