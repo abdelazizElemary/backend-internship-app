@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 
@@ -6,13 +5,7 @@ from .models import MyUser
 
 
 class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MyUser
-        fields = ('id', 'username', 'email', 'first_name', 'last_name')
-
-
-class CreateUserSerializer(serializers.ModelSerializer):
-    confirm_password = serializers.CharField(required=True)
+    confirm_password = serializers.CharField(required=True,write_only=True)
 
     def validate(self, request):
         password1 = request['password']
@@ -25,7 +18,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyUser
         fields = ('id', 'first_name', 'last_name', 'username', 'email', 'password', 'confirm_password')
-        extra_kwargs = {'password': {'write_only': True}}
+        extra_kwargs = {'password': {'write_only': True}, 'confirm_password': {'write_only': True}}
 
     def create(self, validated_data):
         extra_data = {'first_name': validated_data['first_name'], 'last_name': validated_data['last_name']}
@@ -71,6 +64,3 @@ class ChangePasswordSerializer(serializers.Serializer):
             return request
 
         raise serializers.ValidationError("Please sure that new password and  confirm password are identical . ")
-
-
-

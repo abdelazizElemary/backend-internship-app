@@ -7,11 +7,11 @@ from rest_framework import generics, permissions, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from users.serializers import LoginSerializer, UserSerializer, CreateUserSerializer, ChangePasswordSerializer
+from users.serializers import LoginSerializer, UserSerializer, ChangePasswordSerializer
 
 
 class SignUp(generics.GenericAPIView):
-    serializer_class = CreateUserSerializer
+    serializer_class = UserSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
