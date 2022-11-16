@@ -12,7 +12,7 @@
 
 - to `Register` send a Post request to `http://localhost:8000/api/authors/` request's body will just need `username` and `password`
 
-- to `Login` send a Post request to `http://localhost:8000/api/login` and it will give you back a `token key`
+- to `Login` send a Post request to `http://localhost:8000/api/login` request's body should have an existed `username` and `password`, it will give you back a `token key`
 
 - to Create new `Blog` send a Post request to `http://localhost:8000/api/blogs/` request's body will need `blog_title`, `blog_text` and you will need to add `Authorization` to the header with a value `Token {the key you have got from the login}`, the author will be auto generated depending on the token user.
 
