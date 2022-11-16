@@ -18,7 +18,8 @@ class LoginView(KnoxLoginView):
         return super(LoginView, self).post(request, format=None)
 
 
-class RegistrationView(generics.GenericAPIView):
+class RegistrationView(generics.CreateAPIView):
+    permission_classes = (permissions.AllowAny,)
     serializer_class = CreateUserSerializer
 
     def post(self, request, *args, **kwargs):
