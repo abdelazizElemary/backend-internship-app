@@ -8,43 +8,46 @@
 #     return HttpResponse("Hello, world. You're at the polls index.")
 # # Create your views here.
 
-from rest_framework import viewsets
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from books.models import Book
+# from rest_framework import viewsets
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
+# from books.models import Book
 
-# class ListUsers(APIView):
-#     """
-#     View to list all users in the system.
+# # class ListUsers(APIView):
+# #     """
+# #     View to list all users in the system.
 
-#     * Requires token authentication.
-#     * Only admin users are able to access this view.
-#     """
+# #     * Requires token authentication.
+# #     * Only admin users are able to access this view.
+# #     """
 
-#     def get(self, request, format=None):
-#         """
-#         Return a list of all users.
-#         """
-#         books = [book.title for book in Book.objects.all()]
-#         booksauthor = [book.author for book in Book.objects.all()]
-#         print(booksauthor)
-#         return Response(books)
+# #     def get(self, request, format=None):
+# #         """
+# #         Return a list of all users.
+# #         """
+# #         books = [book.title for book in Book.objects.all()]
+# #         booksauthor = [book.author for book in Book.objects.all()]
+# #         print(booksauthor)
+# #         return Response(books)
 
 
-#     def post(self, request, format=None):
-#         """
-#         Return a list of all users.
-#         """
-#         books = [book.title for book in Book.objects.all()]
-#         return Response(books)
+# #     def post(self, request, format=None):
+# #         """
+# #         Return a list of all users.
+# #         """
+# #         books = [book.title for book in Book.objects.all()]
+# #         return Response(books)
 
-from .models import Book
-from .serializers import BookSerializer
-from rest_framework import generics
+# from .models import Book
+# from .serializers import BookSerializer
+# from rest_framework import generics
 
-class BookList(generics.ListCreateAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer   
+# class BookList(generics.ListCreateAPIView):
+#     queryset = Book.objects.all()
+#     serializer_class = BookSerializer   
+    
+
+
 
 # class BookViewSet(viewsets.ViewSet):
 #     def list(self, request):
@@ -69,9 +72,12 @@ class BookList(generics.ListCreateAPIView):
 from rest_framework import viewsets
 from .models import Book
 from .serializers import BookSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 
 # Create your views here.
 
 class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]

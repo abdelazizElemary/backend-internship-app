@@ -13,5 +13,4 @@ router.register(r'', BookViewSet)
 urlpatterns = [ 
     path('', include(router.urls)),
 
-    path('create/', views.BookList.as_view(), name='create')
 ]
